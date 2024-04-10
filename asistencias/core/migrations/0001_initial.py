@@ -15,58 +15,145 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Alumno',
+            name="Alumno",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('apellido', models.CharField(max_length=100)),
-                ('nombre', models.CharField(max_length=100)),
-                ('nacionalidad', models.CharField(max_length=100)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("apellido", models.CharField(max_length=100)),
+                ("nombre", models.CharField(max_length=100)),
+                ("nacionalidad", models.CharField(max_length=100)),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'permissions': [('deshabilitar_alumno', 'Deshabilitar alumno')],
+                "permissions": [("deshabilitar_alumno", "Deshabilitar alumno")],
             },
         ),
         migrations.CreateModel(
-            name='MotivoAusencia',
+            name="MotivoAusencia",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('text', models.CharField(max_length=30)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("text", models.CharField(max_length=30)),
             ],
         ),
         migrations.CreateModel(
-            name='TablaAsistencia',
+            name="TablaAsistencia",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fecha', models.DateField(unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("fecha", models.DateField(unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Preceptor',
+            name="Preceptor",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('apellido', models.CharField(max_length=100)),
-                ('nombre', models.CharField(max_length=100)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("apellido", models.CharField(max_length=100)),
+                ("nombre", models.CharField(max_length=100)),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='PoapAsistencia',
+            name="PoapAsistencia",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('presente', models.BooleanField(null=True)),
-                ('alumno', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='core.alumno')),
-                ('motivo_ausencia', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='core.motivoausencia')),
-                ('tabla_asistencia', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='lista_alumnos', to='core.tablaasistencia')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("presente", models.BooleanField(null=True)),
+                (
+                    "alumno",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="core.alumno",
+                    ),
+                ),
+                (
+                    "motivo_ausencia",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="core.motivoausencia",
+                    ),
+                ),
+                (
+                    "tabla_asistencia",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="lista_alumnos",
+                        to="core.tablaasistencia",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Docente',
+            name="Docente",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('apellido', models.CharField(max_length=100)),
-                ('nombre', models.CharField(max_length=100)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("apellido", models.CharField(max_length=100)),
+                ("nombre", models.CharField(max_length=100)),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

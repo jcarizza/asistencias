@@ -4,6 +4,7 @@ from .models import Alumno, Curso, Asistencia
 from .serializers import AlumnoSerializer, AsistenciaSerializer, CursoSerializer
 from .permissions import IsOwnerAlumno, IsPreceptor, IsDocente
 
+
 class CursoList(generics.ListAPIView):
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
@@ -12,10 +13,10 @@ class CursoList(generics.ListAPIView):
 class AlumnoViewSet(viewsets.ModelViewSet):
     queryset = Alumno.objects.all()
     serializer_class = AlumnoSerializer
-    permission_classes = [IsAuthenticated, IsOwnerAlumno|IsPreceptor]
+    permission_classes = [IsAuthenticated, IsOwnerAlumno | IsPreceptor]
 
 
 class AsistenciaViewSet(viewsets.ModelViewSet):
     queryset = Asistencia.objects.all()
     serializer_class = AsistenciaSerializer
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]

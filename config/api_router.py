@@ -18,4 +18,3 @@ urlpatterns = router.urls
 urlpatterns += [
     path("cursos/", CursoList.as_view(), name="curso-list"),
 ]
-

@@ -10,6 +10,7 @@ class UserAdminChangeForm(admin_forms.UserChangeForm):
     class Meta(admin_forms.UserChangeForm.Meta):
         model = User
 
+
 class UserAdminCreationForm(admin_forms.UserCreationForm):
     """
     Form for User Creation in the Admin Area.

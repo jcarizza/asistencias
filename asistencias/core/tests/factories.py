@@ -23,17 +23,20 @@ class UserFactory(DjangoModelFactory):
 
 class PreceptorFactory(DjangoModelFactory):
     user = UserFactory()
+
     class Meta:
         model = Preceptor
 
 
 class DocenteFactory(DjangoModelFactory):
     user = UserFactory()
+
     class Meta:
         model = Docente
 
 
 class AlumnoFactory(DjangoModelFactory):
     user = UserFactory()
+
     class Meta:
         model = Alumno
