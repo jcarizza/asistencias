@@ -22,7 +22,7 @@ class Curso(models.Model):
         return self.nombre
 
 class Alumno(models.Model):
-    user = models.OneToOneField("users.User", on_delete=models.CASCADE)
+    user = models.OneToOneField("users.User", related_name="alumno", on_delete=models.CASCADE)
     apellido = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
     nacionalidad = models.CharField(max_length=100)
@@ -39,12 +39,12 @@ class Alumno(models.Model):
         ]
 
 class Preceptor(models.Model):
-    user = models.OneToOneField("users.User", on_delete=models.CASCADE)
+    user = models.OneToOneField("users.User", related_name="preceptor", on_delete=models.CASCADE)
     apellido = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
 
 class Docente(models.Model):
-    user = models.OneToOneField("users.User", on_delete=models.CASCADE)
+    user = models.OneToOneField("users.User", related_name="docente", on_delete=models.CASCADE)
     apellido = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
 

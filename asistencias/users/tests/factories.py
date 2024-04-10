@@ -2,6 +2,7 @@ from collections.abc import Sequence
 from typing import Any
 
 from factory import Faker
+from factory.fuzzy import FuzzyInteger
 from factory import post_generation
 from factory.django import DjangoModelFactory
 
@@ -9,7 +10,7 @@ from asistencias.users.models import User
 
 
 class UserFactory(DjangoModelFactory):
-    username = Faker("user_name")
+    username = FuzzyInteger(10000000, 50000000)
     email = Faker("email")
     name = Faker("name")
 

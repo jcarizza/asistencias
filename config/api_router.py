@@ -4,7 +4,7 @@ from rest_framework.routers import SimpleRouter
 from django.urls import path
 
 from asistencias.users.api.views import UserViewSet
-from core.api import CursoList, AlumnoViewSet, AsistenciaViewSet
+from asistencias.core.api import CursoList, AlumnoViewSet, AsistenciaViewSet
 
 router = DefaultRouter() if settings.DEBUG else SimpleRouter()
 
