@@ -28,7 +28,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.11'
       # Consider using pre-commit.ci for open source project
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.1
@@ -72,7 +72,7 @@ jobs:
         run: docker compose -f local.yml run --rm django python manage.py migrate
 
       - name: Run Django Tests
-        run: docker compose -f local.yml run django tests
+        run: docker compose -f local.yml run --rm django python manage.py test
 
       - name: Tear down the Stack
         run: docker compose -f local.yml down
