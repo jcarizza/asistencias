@@ -1,8 +1,12 @@
-from rest_framework import viewsets, generics, status
-from rest_framework.response import Response
+from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticated
 from .models import Alumno, Curso, Asistencia
-from .serializers import AlumnoSerializer, AsistenciaSerializer, CursoSerializer, TomarAsistenciaSerializer, AsistenciaCrearSerializer
+from .serializers import (
+    AlumnoSerializer,
+    AsistenciaSerializer,
+    CursoSerializer,
+    TomarAsistenciaSerializer,
+)
 from .permissions import IsOwnerAlumno, IsPreceptor, IsDocente
 
 
@@ -20,7 +24,7 @@ class AlumnoViewSet(viewsets.ModelViewSet):
 class AsistenciaViewSet(viewsets.ModelViewSet):
     queryset = Asistencia.objects.all()
     serializer_class = AsistenciaSerializer
-    permission_classes = [IsAuthenticated, IsPreceptor|IsDocente]
+    permission_classes = [IsAuthenticated, IsPreceptor | IsDocente]
 
     def get_serializer_class(self, *args, **kwargs):
         if self.request.method == "POST":

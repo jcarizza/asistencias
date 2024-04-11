@@ -9,7 +9,7 @@ from asistencias.core.tests.factories import (
     AlumnoFactory,
     DocenteFactory,
 )
-from asistencias.core.models import Alumno, Preceptor
+from asistencias.core.models import Alumno
 
 
 class AlumnoViewSetTestCase(TestCase):
@@ -25,7 +25,6 @@ class AlumnoViewSetTestCase(TestCase):
         )  # Include the token in the client's requests
 
     def _get_client_for_user(self, user):
-        client = APIClient()
         t, _ = Token.objects.get_or_create(
             user=user
         )  # Create a token for the test user
@@ -55,8 +54,6 @@ class AlumnoViewSetTestCase(TestCase):
         self.alumno.delete()
 
     def test_alumno_solo_puede_ver_sus_propios_datos(self):
-        data = {"nombre": "Pedro", "apellido": "Gomez"}
-
         # Nuevo usuario
         user = UserFactory.create()
         self.otro_alumno = Alumno.objects.create(

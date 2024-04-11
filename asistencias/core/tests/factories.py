@@ -1,15 +1,18 @@
-from collections.abc import Sequence
-from typing import Any
 from datetime import datetime
 
 from factory import Faker
 from factory.fuzzy import FuzzyInteger, FuzzyDate
-from factory import post_generation
 from factory.django import DjangoModelFactory
-from rest_framework.authtoken.models import Token
 
 from asistencias.users.models import User
-from asistencias.core.models import PoapAsistencia, Asistencia, Preceptor, Docente, Alumno, Curso
+from asistencias.core.models import (
+    PoapAsistencia,
+    Asistencia,
+    Preceptor,
+    Docente,
+    Alumno,
+    Curso,
+)
 
 
 class UserFactory(DjangoModelFactory):
@@ -41,6 +44,7 @@ class AlumnoFactory(DjangoModelFactory):
 
     class Meta:
         model = Alumno
+
 
 class CursoFactory(DjangoModelFactory):
     class Meta:

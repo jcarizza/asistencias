@@ -16,8 +16,10 @@ class PreceptorManager(models.Manager):
 class CursoManager(models.Manager):
     pass
 
+
 class AsistenciaManager(models.Manager):
     pass
+
 
 class Curso(models.Model):
     nombre = models.CharField(max_length=10, null=True)
@@ -33,7 +35,9 @@ class Alumno(models.Model):
     apellido = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
     nacionalidad = models.CharField(max_length=100)
-    curso = models.ForeignKey("Curso", null=True, related_name="alumnos", on_delete=models.CASCADE)
+    curso = models.ForeignKey(
+        "Curso", null=True, related_name="alumnos", on_delete=models.CASCADE
+    )
 
     objects = PersonaManager()
 

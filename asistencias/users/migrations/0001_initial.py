@@ -4,7 +4,7 @@ import django.utils.timezone
 from django.db import migrations
 from django.db import models
 
-import asistencias.users.models
+import asistencias.users.models  # noqa: F401
 
 
 class Migration(migrations.Migration):

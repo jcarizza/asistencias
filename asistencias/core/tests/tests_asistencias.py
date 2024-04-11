@@ -1,8 +1,6 @@
-import uuid
 from django.test import TestCase
 from rest_framework.test import APIClient
 from rest_framework import status
-from rest_framework.authtoken.models import Token
 from asistencias.users.tests.factories import UserFactory
 from asistencias.core.tests.factories import (
     AlumnoFactory,
@@ -29,7 +27,7 @@ class AsistenciasViewSetTestCase(TestCase):
         for n in range(0, 10):
             user = UserFactory.create()
             alumno = AlumnoFactory.create(curso=self.curso, user=user)
-            poap_asistencia = PoapAsistenciaFactory.create(
+            PoapAsistenciaFactory.create(
                 alumno=alumno,
                 tabla_asistencia=self.asistencia,
                 presente=True,
@@ -87,13 +85,13 @@ class AsistenciasViewSetTestCase(TestCase):
         data = {
             "fecha": "2024-04-24",
             "curso": self.curso.id,
-            "lista_alumnos": [{
-                "alumno": self.alumno.id,
-                "presente": True,
-                "motivo_ausencia": None,
-            }]
+            "lista_alumnos": [
+                {
+                    "alumno": self.alumno.id,
+                    "presente": True,
+                    "motivo_ausencia": None,
+                }
+            ],
         }
-        response = self.client.post(f"/api/asistencias/", data, format="json")
-        breakpoint()
-        print(response.json())
+        response = self.client.post("/api/asistencias/", data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)

@@ -13,11 +13,13 @@ class AlumnoSerializer(serializers.ModelSerializer):
         model = Alumno
         fields = "__all__"
 
+
 class PoapAsistenciaSerializer(serializers.ModelSerializer):
     class Meta:
         model = PoapAsistencia
-        exclude = ("tabla_asistencia", )
+        exclude = ("tabla_asistencia",)
         validators = []
+
 
 class AsistenciaSerializer(serializers.ModelSerializer):
     lista = PoapAsistenciaSerializer(read_only=True, many=True, source="lista_alumnos")
@@ -27,10 +29,12 @@ class AsistenciaSerializer(serializers.ModelSerializer):
         model = Asistencia
         fields = "__all__"
 
+
 class AsistenciaCrearSerializer(serializers.ModelSerializer):
     class Meta:
         model = Asistencia
         fields = "__all__"
+
 
 class TomarAsistenciaSerializer(serializers.ModelSerializer):
     fecha = serializers.DateField()
@@ -41,9 +45,7 @@ class TomarAsistenciaSerializer(serializers.ModelSerializer):
         lista = self.validated_data.pop("lista_alumnos")
         tabla_asistencia = Asistencia.objects.create(**self.validated_data)
         for alumno in lista:
-            PoapAsistencia.objects.create(
-                **alumno, tabla_asistencia=tabla_asistencia
-            )
+            PoapAsistencia.objects.create(**alumno, tabla_asistencia=tabla_asistencia)
         return tabla_asistencia
 
     class Meta:
