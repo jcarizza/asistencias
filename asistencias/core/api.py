@@ -1,5 +1,7 @@
 from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from .models import Alumno, Curso, Asistencia
 from .serializers import (
     AlumnoSerializer,
@@ -8,6 +10,7 @@ from .serializers import (
     TomarAsistenciaSerializer,
 )
 from .permissions import IsOwnerAlumno, IsPreceptor, IsDocente
+from asistencias.core.services import ClimaService
 
 
 class CursoList(generics.ListAPIView):
@@ -30,3 +33,11 @@ class AsistenciaViewSet(viewsets.ModelViewSet):
         if self.request.method == "POST":
             return TomarAsistenciaSerializer
         return self.serializer_class
+
+
+class Clima(APIView):
+
+    def get(self, request, format=None):
+        return Response({
+            "clima": ClimaService.get_clima()
+        })

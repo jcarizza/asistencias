@@ -307,3 +307,7 @@ SPECTACULAR_SETTINGS = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+
+CIRCUIT_TIMEOUT = 10
+WEATHER_API_URL = "https://webhook.site/f303ee3f-ca84-4e85-b4cd-ab5c31f7fd6c"

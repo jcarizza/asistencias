@@ -4,7 +4,7 @@ from rest_framework.routers import SimpleRouter
 from django.urls import path
 
 from asistencias.users.api.views import UserViewSet
-from asistencias.core.api import CursoList, AlumnoViewSet, AsistenciaViewSet
+from asistencias.core.api import CursoList, AlumnoViewSet, AsistenciaViewSet, Clima
 
 router = DefaultRouter() if settings.DEBUG else SimpleRouter()
 
@@ -17,4 +17,5 @@ urlpatterns = router.urls
 
 urlpatterns += [
     path("cursos/", CursoList.as_view(), name="curso-list"),
+    path("clima/", Clima.as_view(), name="clima-get"),
 ]

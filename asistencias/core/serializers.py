@@ -1,18 +1,18 @@
 from rest_framework import serializers
 from asistencias.core.models import Alumno, Asistencia, Curso, PoapAsistencia
-
-
-class CursoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Curso
-        fields = "__all__"  # Incluye todos los campos del modelo Curso
-
+from asistencias.core.services import ClimaService
 
 class AlumnoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alumno
         fields = "__all__"
 
+class CursoSerializer(serializers.ModelSerializer):
+    alumnos = AlumnoSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Curso
+        fields = "__all__"  # Incluye todos los campos del modelo Curso
 
 class PoapAsistenciaSerializer(serializers.ModelSerializer):
     class Meta:
