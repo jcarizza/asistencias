@@ -78,6 +78,11 @@ class MotivoAusencia(models.Model):
     def __str__(self):
         return f"{self.text}"
 
+    @classmethod
+    def get_motivo_lluvioso(cls):
+        obj, _ = cls.objects.get_or_create(text="lluvioso")
+        return obj
+
 
 class Asistencia(models.Model):
     fecha = models.DateField(null=True)

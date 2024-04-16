@@ -1,6 +1,9 @@
+import logging
 from rest_framework import serializers
-from asistencias.core.models import Alumno, Asistencia, Curso, PoapAsistencia
+from asistencias.core.models import Alumno, Asistencia, Curso, PoapAsistencia, MotivoAusencia
 from asistencias.core.services import ClimaService
+
+logger = logging.getLogger()
 
 class AlumnoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,9 +45,16 @@ class TomarAsistenciaSerializer(serializers.ModelSerializer):
     lista_alumnos = PoapAsistenciaSerializer(many=True)
 
     def create(self, validated_data):
+        clima = ClimaService.get_clima()
         lista = self.validated_data.pop("lista_alumnos")
         tabla_asistencia = Asistencia.objects.create(**self.validated_data)
         for alumno in lista:
+            presente = alumno.get("presente")
+
+            if clima == "lluvioso" and not presente:
+                alumno["motivo_ausencia"] = MotivoAusencia.get_motivo_lluvioso()
+                logger.info("El clima esta lluvioso, falta JUSTIFICADA")
+
             PoapAsistencia.objects.create(**alumno, tabla_asistencia=tabla_asistencia)
         return tabla_asistencia
 
