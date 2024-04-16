@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "c1a0dc38-7471-4cee-bfa1-e527eb71fa97",
+		"name": "Asistencia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cursos",
+			"item": [
+				{
+					"name": "{{URL}}/api/cursos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/cursos",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"cursos"
+							]
+						},
+						"description": "Cursos"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Alumnos",
+			"item": [
+				{
+					"name": "{{URL}}/api/alumnos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/alumnos",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"alumnos"
+							]
+						},
+						"description": "Cursos"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clima",
+			"item": [
+				{
+					"name": "{{URL}}/api/cursos Copy",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/cursos",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"cursos"
+							]
+						},
+						"description": "Cursos"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Asistencias",
+			"item": []
+		}
+	]
+}
